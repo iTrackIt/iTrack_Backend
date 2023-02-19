@@ -1,13 +1,13 @@
-package rw.pacis_nkubito.boilerplateswagger;
+package rw.iTrack.Application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BoilerplateSwaggerApplication {
+public class ITrackApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(BoilerplateSwaggerApplication.class, args);
+        SpringApplication.run(ITrackApp.class, args);
     }
 
 }

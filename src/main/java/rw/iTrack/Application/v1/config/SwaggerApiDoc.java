@@ -1,4 +1,4 @@
-package rw.pacis_nkubito.boilerplateswagger.v1.config;
+package rw.iTrack.Application.v1.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
