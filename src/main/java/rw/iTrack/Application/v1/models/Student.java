@@ -17,12 +17,25 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @NotNull
     private String names;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private int year;
+
+    @NotNull
     private Character className;
+
+    @Column(columnDefinition = 0)
     private int marks;
+
+    @NotNull
     private String password;
+
     private Gender gender;
 
     public Student(String names, String email, String password, Gender gender) {
