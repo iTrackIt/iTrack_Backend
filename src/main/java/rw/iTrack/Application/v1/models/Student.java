@@ -1,9 +1,11 @@
 package rw.iTrack.Application.v1.models;
 
+import com.sun.istack.NotNull;
 import com.sun.tools.javac.jvm.Gen;
 import lombok.*;
 import rw.iTrack.Application.v1.enums.Gender;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -30,12 +32,13 @@ public class Student {
     @NotNull
     private Character className;
 
-    @Column(columnDefinition = 0)
+    @Column(columnDefinition = "0")
     private int marks;
 
     @NotNull
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     public Student(String names, String email, String password, Gender gender) {
