@@ -6,7 +6,7 @@ import rw.iTrack.Application.v1.enums.Gender;
 
 import java.util.UUID;
 
-@Entit
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,6 +14,8 @@ import java.util.UUID;
 @ToString
 public class Student {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String names;
     private String email;
