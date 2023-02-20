@@ -36,10 +36,17 @@ public class Event {
     @JoinColumn(name = "educator")
     private Educator educator;
 
-    public Event(String reason, int marks, LocalDate timeRemoved, Educator educator) {
+    @NotNull
+    @ApiModelProperty("The student who was deducted marks")
+    @ManyToOne
+    @JoinColumn(name = "student")
+    private Student student;
+
+    public Event(String reason, int marks, LocalDate timeRemoved, Educator educator ,  Student student) {
         this.reason = reason;
         this.marks = marks;
         this.timeRemoved = timeRemoved;
         this.educator = educator;
+        this.student = student;
     }
 }
