@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import rw.iTrack.Application.v1.models.Educator;
 import rw.iTrack.Application.v1.repositories.EducatorRepository;
 import rw.iTrack.Application.v1.services.EducatorService;
@@ -49,5 +50,14 @@ public class EducatorServiceImpl implements EducatorService {
         }else {
             throw new Exception("The educator with id: " + educ_id + " does not exist");
         }
+    }
+
+    public  ResponseEntity<Educator> addEducator(@RequestBody Educator educator) throws Exception{
+       Educator educator1 = (educatorRepository.findByEmail(educator.getEmail())).get();
+       if(educator1 == null){
+
+       }else{
+           throw new Exception("The educator with email: " + educator1.getEmail() + " already exists");
+       }
     }
 }

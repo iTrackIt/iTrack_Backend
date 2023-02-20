@@ -35,8 +35,10 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public String deleteStudent(String password, UUID id) {
         Encoder encoder = new Encoder();
-        Student student = this.studentRepository.findById(id);
-        if (!encoder.isMatch(password, student.getPassword)) {
+        Student student = (this.studentRepository.findById(id)).orElseThrow(()->{
+            new Exception("The student with id " + id + " does not exist");
+        });
+        if (!encoder.isMatch(password, student.getPassword())) {
             return "Password incorrect";
         }
         this.studentRepository.deleteById(id);
@@ -49,8 +51,10 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public Student getStudentById(UUID id) {
-        return this.studentRepository.findById(id);
+    public Student getStudentById(UUID id) throws Exception {
+        return this.studentRepository.findById(id).orElseThrow(()->{
+            throw new Exception("The user with id:" + id + " does not exist");
+        });
     }
 
     @Override

@@ -33,7 +33,7 @@ public class StudentController {
     @PostMapping("/create-multiple")
     public ResponseEntity<ApiResponse> createStudent(@RequestBody List<CreateStudentDTO> students) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/student/create").toString());
-        return ResponseEntity.created(uri).body(new ApiResponse(true, "Student created successfully", this.studentService.addMultipleStudents(students)));
+        retutrn ResponseEntity.created(uri).body(new ApiResponse(true, "Student created successfully", this.studentService.addMultipleStudents(students)));
     }
 
     @PutMapping("/update")
@@ -49,12 +49,12 @@ public class StudentController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<ApiResponse> getAllStudents() {
+    public ResponseEntity<ApiResponse> getAllStudents()  {
         return ResponseEntity.ok().body(new ApiResponse(true, "Students fetched successfully", this.studentService.getAllStudents()));
     }
 
     @GetMapping("/:id")
-    public ResponseEntity<ApiResponse> getStudentsById(@PathVariable(name = "id") UUID studentId) {
+    public ResponseEntity<ApiResponse> getStudentsById(@PathVariable(name = "id") UUID studentId) throws Exception {
         return ResponseEntity.ok().body(new ApiResponse(true, "Student fetched successfully", this.studentService.getStudentById(studentId)));
     }
 

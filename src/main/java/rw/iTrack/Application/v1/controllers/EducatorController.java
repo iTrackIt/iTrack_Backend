@@ -30,6 +30,10 @@ public class EducatorController {
         return educatorService.getEducatorById(educ_id);
     }
 
+    @PostMapping
+    public  ResponseEntity<Educator> addEducator(@RequestBody Educator educator) throws Exception{
+    return educatorService.addEducator(educator);
+    }
     @DeleteMapping("/{educ_id}")
     public ResponseEntity<Educator> deleteEducator(@PathVariable UUID educ_id) throws Exception{
       return educatorService.deleteEducator(educ_id);
