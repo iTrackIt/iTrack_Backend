@@ -55,7 +55,7 @@ public class EducatorServiceImpl implements EducatorService {
     public  ResponseEntity<Educator> addEducator(@RequestBody Educator educator) throws Exception{
        Educator educator1 = (educatorRepository.findByEmail(educator.getEmail())).get();
        if(educator1 == null){
-
+          return ResponseEntity.ok().body(educator);
        }else{
            throw new Exception("The educator with email: " + educator1.getEmail() + " already exists");
        }

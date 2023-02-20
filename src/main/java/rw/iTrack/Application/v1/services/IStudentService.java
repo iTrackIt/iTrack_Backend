@@ -13,11 +13,11 @@ public interface IStudentService {
 
     public Student updateStudent(Student student, UpdateStudentDTO newData);
 
-    public String deleteStudent(String password, UUID id);
+    public String deleteStudent(String password, UUID id) throws Exception;
 
     public List<Student> getAllStudents();
 
-    public Student getStudentById(UUID id);
+    public Student getStudentById(UUID id) throws Exception;
 
     public List<Student> addMultipleStudents(List<Student> students);
 }
