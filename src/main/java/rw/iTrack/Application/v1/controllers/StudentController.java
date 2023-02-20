@@ -3,11 +3,14 @@ package rw.iTrack.Application.v1.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rw.iTrack.Application.v1.dto.CreateStudentDTO;
 import rw.iTrack.Application.v1.dto.UpdateStudentDTO;
 import rw.iTrack.Application.v1.models.Student;
 import rw.iTrack.Application.v1.payload.ApiResponse;
 import rw.iTrack.Application.v1.serviceImpls.StudentServiceImpl;
+
+import java.net.URI;
 import java.util.*;
 
 @RestController
@@ -20,8 +23,8 @@ public class StudentController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createStudent(@RequestBody CreateStudentDTO dto) {
         Student student = new Student(dto.getNames(), dto.getEmail(), dto.getPassword(), dto.getGender(), dto.getClassName(), dto.getYear());
-//        URI uri = URI.create(ServletComponentsBuilder.fromCurrentContextPath().path("/api/v1/student/create").toString());
-        return ResponseEntity.ok().body(new ApiResponse(true, "Student created successfully", this.studentService.createStudent(student)));
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/student/create").toString());
+        return ResponseEntity.created(uri).body(new ApiResponse(true, "Student created successfully", this.studentService.createStudent(student)));
     }
 
     @PostMapping("/create-multiple")
@@ -31,8 +34,8 @@ public class StudentController {
             Student student = new Student(dto.getNames(), dto.getEmail(), dto.getPassword(), dto.getGender(), dto.getClassName(), dto.getYear());
             studentEntity.add(student);
         }
-//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/student/create").toString());
-        return ResponseEntity.ok().body(new ApiResponse(true, "Student created successfully", this.studentService.addMultipleStudents(studentEntity)));
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/student/create").toString());
+        return ResponseEntity.created(uri).body(new ApiResponse(true, "Student created successfully", this.studentService.addMultipleStudents(studentEntity)));
     }
 
     @PutMapping("/update")
