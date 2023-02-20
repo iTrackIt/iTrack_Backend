@@ -33,10 +33,10 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public String deleteStudent(String password, UUID id) {
+    public String deleteStudent(String password, UUID id) throws Exception {
         Encoder encoder = new Encoder();
-        Student student = this.studentRepository.findById(id);
-        if (!encoder.isMatch(password, student.getPassword)) {
+        Student student = this.studentRepository.findById(id).orElseThrow(()->new Exception("Student not found"));
+        if (!encoder.isMatch(password, student.getPassword())) {
             return "Password incorrect";
         }
         this.studentRepository.deleteById(id);
@@ -49,8 +49,8 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public Student getStudentById(UUID id) {
-        return this.studentRepository.findById(id);
+    public Student getStudentById(UUID id) throws Exception {
+        return this.studentRepository.findById(id).orElseThrow(()->new Exception("Student not found"));
     }
 
     @Override
