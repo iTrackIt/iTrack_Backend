@@ -53,7 +53,7 @@ public class StudentController {
         return ResponseEntity.ok().body(new ApiResponse(true, "Students fetched successfully", this.studentService.getAllStudents()));
     }
 
-    @GetMapping("/:id")
+    @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> getStudentsById(@PathVariable(name = "id") UUID studentId) {
         return ResponseEntity.ok().body(new ApiResponse(true, "Student fetched successfully", this.studentService.getStudentById(studentId)));
     }
