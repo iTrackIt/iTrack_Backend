@@ -7,8 +7,7 @@ Simple Student marks management system in springboot. Fork it, star it and contr
 ## Authors
 
 -[Mugisha Precieux](https://github.com/mugishap)
-
--[Jazzy Bruno](https://github.com/jazzbruno)
+-[Jazzy Bruno](https://github.com/jazzybruno)
 
 How to test this application before it is hosted 
 
