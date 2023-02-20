@@ -18,11 +18,4 @@ public class ApiResponse {
         this.message = message;
     }
 
-    public ApiResponse(boolean success, String message, Object data
-    ) {
-        this.success = success;
-        this.message = message;
-        this.data = data;
-    }
-
 }
