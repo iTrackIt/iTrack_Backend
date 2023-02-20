@@ -8,4 +8,4 @@ Simple Student marks management system in springboot. Fork it, star it and contr
 
 -[Mugisha Precieux](https://github.com/mugishap)
 
--[Jazzy Bruno](https://github.com/jazzbruno)
+-[Jazzy Bruno](https://github.com/jazzybruno)
