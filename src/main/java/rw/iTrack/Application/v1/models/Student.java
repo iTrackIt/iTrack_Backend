@@ -40,11 +40,13 @@ public class Student {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    public Student(String names, String email, String password, Gender gender) {
+    public Student(String names, String email, String password, Gender gender, Character className, int year) {
         this.names = names;
         this.email = email;
         this.password = password;
         this.gender = gender;
+        this.className = className;
+        this.year = year;
     }
 
 
