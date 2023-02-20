@@ -36,4 +36,18 @@ public class EducatorServiceImpl implements EducatorService {
             throw new Exception("The user with id: " + educ_id + " does not exist");
         }
     }
+
+    public ResponseEntity<Educator> deleteEducator(@PathVariable UUID educ_id) throws Exception{
+        if(educatorRepository.existsById(educ_id)){
+            try {
+                Educator educator = (educatorRepository.findById(educ_id)).get();
+                educatorRepository.delete(educator);
+                return ResponseEntity.ok().body(educator);
+            }catch (Exception e){
+                throw new Exception("Failed to delete the educator");
+            }
+        }else {
+            throw new Exception("The educator with id: " + educ_id + " does not exist");
+        }
+    }
 }

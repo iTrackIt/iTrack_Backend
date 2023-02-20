@@ -1,7 +1,6 @@
 package rw.iTrack.Application.v1.models;
 
 import com.sun.istack.NotNull;
-import com.sun.tools.javac.jvm.Gen;
 import lombok.*;
 import rw.iTrack.Application.v1.enums.Gender;
 

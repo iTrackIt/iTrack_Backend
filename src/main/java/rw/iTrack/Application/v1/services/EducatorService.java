@@ -10,4 +10,5 @@ public interface EducatorService {
 
     public ResponseEntity<List<Educator>> getAllEducators() throws Exception;
     public ResponseEntity<Educator> getEducatorById(UUID educ_id) throws Exception;
+    public ResponseEntity<Educator> deleteEducator(UUID educ_id) throws Exception;
 }

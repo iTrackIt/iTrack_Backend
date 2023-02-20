@@ -2,10 +2,7 @@ package rw.iTrack.Application.v1.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rw.iTrack.Application.v1.models.Educator;
 import rw.iTrack.Application.v1.serviceImpls.EducatorServiceImpl;
 
@@ -33,4 +30,8 @@ public class EducatorController {
         return educatorService.getEducatorById(educ_id);
     }
 
+    @DeleteMapping("/{educ_id}")
+    public ResponseEntity<Educator> deleteEducator(@PathVariable UUID educ_id) throws Exception{
+      return educatorService.deleteEducator(educ_id);
+    }
 }
