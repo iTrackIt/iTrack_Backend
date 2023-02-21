@@ -32,6 +32,7 @@ public class Educator {
     private String national_id;
     @NotNull
     @ApiModelProperty("The gender of the educator male or female?")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     @NotNull
     @ApiModelProperty("The password of the educator")
