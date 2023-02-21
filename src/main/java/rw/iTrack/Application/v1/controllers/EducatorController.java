@@ -3,6 +3,7 @@ package rw.iTrack.Application.v1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rw.iTrack.Application.v1.dto.CreateEducatorDTO;
 import rw.iTrack.Application.v1.dto.EducatorDTO;
 import rw.iTrack.Application.v1.models.Educator;
 import rw.iTrack.Application.v1.serviceImpls.EducatorServiceImpl;
@@ -32,7 +33,7 @@ public class EducatorController {
     }
 
     @PostMapping
-    public  ResponseEntity<EducatorDTO> addEducator(@RequestBody Educator educator) throws Exception{
+    public  ResponseEntity<CreateEducatorDTO> addEducator(@RequestBody CreateEducatorDTO educator) throws Exception{
         // TODO: 2/20/2023 Get data from a creation dto and not a normal class
         // TODO: 2/20/2023 Create dto to add it to 
     return educatorService.addEducator(educator);

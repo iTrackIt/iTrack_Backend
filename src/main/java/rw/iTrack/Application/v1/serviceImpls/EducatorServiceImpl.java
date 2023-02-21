@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import rw.iTrack.Application.v1.dto.CreateEducatorDTO;
 import rw.iTrack.Application.v1.dto.EducatorDTO;
 import rw.iTrack.Application.v1.dto.EducatorDTOMapper;
 import rw.iTrack.Application.v1.models.Educator;
@@ -62,9 +63,17 @@ public class EducatorServiceImpl implements EducatorService {
         }
     }
 
-    public  ResponseEntity<EducatorDTO> addEducator(@RequestBody Educator educator) throws Exception{
+    public  ResponseEntity<CreateEducatorDTO> addEducator(@RequestBody CreateEducatorDTO educator) throws Exception{
        Educator educator1 = (educatorRepository.findByEmail(educator.getEmail())).get();
        if(educator1 == null){
+           Educator educator2 = new Educator(
+                   educator.getFullNames(),
+                   educator.getUsername(),
+                   educator.getEmail(),
+                   educator.getNational_id(),
+                   educator.getGender(),
+                   educator.getPassword()
+           );
           return ResponseEntity.ok().body(educator);
            // TODO: 2/20/2023  Add a educator addition request
            // TODO: 2/20/2023 Add an educator creator from the dto request
