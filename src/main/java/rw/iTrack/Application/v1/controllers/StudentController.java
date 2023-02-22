@@ -17,9 +17,7 @@ import java.util.*;
 @RequestMapping("/api/v1/student")
 @RequiredArgsConstructor
 public class StudentController {
-
     private final StudentServiceImpl studentService;
-
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createStudent(@RequestBody CreateStudentDTO dto) {
         Student student = new Student(dto.getNames(), dto.getEmail(), dto.getPassword(), dto.getGender(), dto.getClassName(), dto.getYear());
@@ -59,6 +57,4 @@ public class StudentController {
     public ResponseEntity<ApiResponse> getStudentsById(@PathVariable(name = "id") UUID studentId) throws Exception {
         return ResponseEntity.ok().body(new ApiResponse(true, "Student fetched successfully", this.studentService.getStudentById(studentId)));
     }
-
-
 }

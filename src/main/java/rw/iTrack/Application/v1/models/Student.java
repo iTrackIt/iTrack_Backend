@@ -29,7 +29,7 @@ public class Student {
     private int year;
 
     @NotNull
-    private Character className;
+    private String className;
 
     @Column()
     private int marks = 0;
@@ -40,7 +40,7 @@ public class Student {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    public Student(String names, String email, String password, Gender gender, Character className, int year) {
+    public Student(String names, String email, String password, Gender gender, String className, int year) {
         this.names = names;
         this.email = email;
         this.password = password;

@@ -10,6 +10,7 @@ public class EducatorDTOMapper implements Function<Educator, EducatorDTO> {
     @Override
     public EducatorDTO apply(Educator educator) {
         return  new EducatorDTO(
+                educator.getEd_id(),
                 educator.getFullNames(),
                 educator.getUsername(),
                 educator.getEmail(),
@@ -18,3 +19,4 @@ public class EducatorDTOMapper implements Function<Educator, EducatorDTO> {
         );
     }
 }
+
