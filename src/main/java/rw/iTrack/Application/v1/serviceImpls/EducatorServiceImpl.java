@@ -10,6 +10,7 @@ import rw.iTrack.Application.v1.dto.EducatorDTOMapper;
 import rw.iTrack.Application.v1.models.Educator;
 import rw.iTrack.Application.v1.repositories.EducatorRepository;
 import rw.iTrack.Application.v1.services.EducatorService;
+import rw.iTrack.Application.v1.utils.Encoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -74,6 +75,8 @@ public class EducatorServiceImpl implements EducatorService {
                    educator.getPassword()
            );
            try {
+               Encoder encoder = new Encoder();
+               educator3.setPassword(encoder.hashPassword(educator3.getPassword()));
                educatorRepository.save(educator3);
                return educator;
            }catch (Exception e){
