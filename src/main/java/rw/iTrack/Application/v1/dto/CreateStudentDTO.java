@@ -13,7 +13,7 @@ public class CreateStudentDTO {
     private String password;
     private Gender gender;
     private int year;
-    private Character className;
+    private String className;
 
 
 }

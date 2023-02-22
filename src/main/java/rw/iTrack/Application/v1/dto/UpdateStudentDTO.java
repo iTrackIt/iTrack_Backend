@@ -12,6 +12,6 @@ public class UpdateStudentDTO {
     private String email;
     private Gender gender;
     private int year;
-    private Character className;
+    private String className;
 
 }
