@@ -31,8 +31,8 @@ public class Student {
     @NotNull
     private Character className;
 
-    @Column(columnDefinition = "0")
-    private int marks;
+    @Column()
+    private int marks = 0;
 
     @NotNull
     private String password;

@@ -15,6 +15,7 @@ public class Educator {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID ed_id;
+
     @NotNull
     @ApiModelProperty("The full names of the Educator")
     private String fullNames;
@@ -32,6 +33,7 @@ public class Educator {
     private String national_id;
     @NotNull
     @ApiModelProperty("The gender of the educator male or female?")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     @NotNull
     @ApiModelProperty("The password of the educator")
