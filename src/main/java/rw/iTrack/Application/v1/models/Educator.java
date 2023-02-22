@@ -15,6 +15,7 @@ public class Educator {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID ed_id;
+
     @NotNull
     @ApiModelProperty("The full names of the Educator")
     private String fullNames;
