@@ -1,6 +1,5 @@
 package rw.iTrack.Application.v1.serviceImpls;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,10 +62,10 @@ public class EducatorServiceImpl implements EducatorService {
         }
     }
 
-    public  ResponseEntity<CreateEducatorDTO> addEducator(@RequestBody CreateEducatorDTO educator) throws Exception{
-       Educator educator1 = (educatorRepository.findByEmail(educator.getEmail())).get();
-       if(educator1 == null){
-           Educator educator2 = new Educator(
+    public  CreateEducatorDTO addEducator(@RequestBody CreateEducatorDTO educator) throws Exception{
+       Optional<Educator> educator2 = educatorRepository.findByEmail(educator.getEmail());
+       if(!educator2.isPresent()){
+           Educator educator3 = new Educator(
                    educator.getFullNames(),
                    educator.getUsername(),
                    educator.getEmail(),
@@ -74,12 +73,29 @@ public class EducatorServiceImpl implements EducatorService {
                    educator.getGender(),
                    educator.getPassword()
            );
-          return ResponseEntity.ok().body(educator);
-           // TODO: 2/20/2023  Add a educator addition request
-           // TODO: 2/20/2023 Add an educator creator from the dto request
-           // TODO: 2/20/2023  Save the educator to the database
+           try {
+               educatorRepository.save(educator3);
+               return educator;
+           }catch (Exception e){
+               throw new Exception("Failed to save the educator");
+           }
        }else{
-           throw new Exception("The educator with email: " + educator1.getEmail() + " already exists");
+           throw new Exception("The educator with email: " + educator2.get().getEmail() + " already exists");
        }
+    }
+
+    public EducatorDTO updateEducator(UUID educ_id , CreateEducatorDTO educatorDTO) throws Exception{
+        if(educatorRepository.existsById(educ_id)){
+//           Educator educator = (educatorRepository.findById(educ_id)).get();
+           Optional<Educator> educator = (educatorRepository.findById(educ_id));
+           educator.get().setFullNames(educatorDTO.getFullNames());
+           educator.get().setUsername(educatorDTO.getUsername());
+           educator.get().setEmail(educatorDTO.getEmail());
+           educator.get().setNational_id(educatorDTO.getNational_id());
+           educator.get().setPassword(educatorDTO.getPassword());
+            return educator.map(educatorDTOMapper).get();
+        }else{
+            throw new Exception("The educator with id: " + educ_id +  " does not exist");
+        }
     }
 }

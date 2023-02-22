@@ -3,11 +3,12 @@ package rw.iTrack.Application.v1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rw.iTrack.Application.v1.dto.CreateEducatorDTO;
 import rw.iTrack.Application.v1.dto.EducatorDTO;
-import rw.iTrack.Application.v1.models.Educator;
+import rw.iTrack.Application.v1.payload.ApiResponse;
 import rw.iTrack.Application.v1.serviceImpls.EducatorServiceImpl;
-
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,11 +34,16 @@ public class EducatorController {
     }
 
     @PostMapping
-    public  ResponseEntity<CreateEducatorDTO> addEducator(@RequestBody CreateEducatorDTO educator) throws Exception{
-        // TODO: 2/20/2023 Get data from a creation dto and not a normal class
-        // TODO: 2/20/2023 Create dto to add it to 
-    return educatorService.addEducator(educator);
+    public  ResponseEntity<ApiResponse> addEducator(@RequestBody CreateEducatorDTO educator) throws Exception{
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/educator").toString());
+        return ResponseEntity.created(uri).body(new ApiResponse(true , "Educator created successfully" , educatorService.addEducator(educator)));
     }
+
+    @PutMapping("/{educ_id}")
+    public ResponseEntity<EducatorDTO> updateEducator( @PathVariable UUID educ_id ,  @RequestBody CreateEducatorDTO educatorDTO) throws Exception{
+        return ResponseEntity.ok().body(educatorService.updateEducator(educ_id ,  educatorDTO));
+    }
+
     @DeleteMapping("/{educ_id}")
     public ResponseEntity<EducatorDTO> deleteEducator(@PathVariable UUID educ_id) throws Exception{
       return educatorService.deleteEducator(educ_id);
