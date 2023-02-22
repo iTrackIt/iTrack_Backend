@@ -24,17 +24,17 @@ public class EducatorController {
         this.educatorService = educatorService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<EducatorDTO>> getAllEducators() throws Exception{
         return educatorService.getAllEducators();
     }
 
-    @GetMapping("/user/{educ_id}")
+    @GetMapping("/{educ_id}")
     public ResponseEntity<ApiResponse> getEducatorById(@PathVariable UUID educ_id) throws Exception{
         return educatorService.getEducatorById(educ_id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public  ResponseEntity<ApiResponse> addEducator(@RequestBody CreateEducatorDTO educator) throws Exception{
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/educator").toString());
         return educatorService.addEducator(educator);
