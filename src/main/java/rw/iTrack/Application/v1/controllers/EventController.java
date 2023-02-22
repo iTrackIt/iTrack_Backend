@@ -10,6 +10,8 @@ import rw.iTrack.Application.v1.payload.ApiResponse;
 import rw.iTrack.Application.v1.payload.ListApiResponse;
 import rw.iTrack.Application.v1.serviceImpls.EventServiceImpl;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/events")
 public class EventController {
@@ -28,4 +30,10 @@ public class EventController {
     public ResponseEntity<ApiResponse> getEventById(@PathVariable Long event_id) throws Exception{
         return eventService.getEventById(event_id);
     }
+
+    @GetMapping("/educator/{educator_id}")
+    public ResponseEntity<ListApiResponse> getEventByEducator(@PathVariable UUID educator_id) throws Exception{
+        return eventService.getEventByEducator(educator_id);
+    }
+
 }
