@@ -50,6 +50,7 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public Student getStudentById(UUID id) throws Exception {
+        System.out.println(id);
         return this.studentRepository.findById(id).orElseThrow(()->new Exception("Student not found"));
     }
 
