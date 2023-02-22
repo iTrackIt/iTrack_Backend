@@ -6,6 +6,7 @@ import rw.iTrack.Application.v1.models.Student;
 import java.time.LocalDate;
 
 public record EventDTO(
+        Long id,
         String reason,
         int marks,
         LocalDate time_Removed,

@@ -3,6 +3,7 @@ package rw.iTrack.Application.v1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rw.iTrack.Application.v1.payload.ApiResponse;
@@ -21,5 +22,10 @@ public class EventController {
     @GetMapping("/all")
     public ResponseEntity<ListApiResponse> getAllEvents() throws Exception{
         return eventService.getAllEvents();
+    }
+
+    @GetMapping("/{event_id}")
+    public ResponseEntity<ApiResponse> getEventById(@PathVariable Long event_id) throws Exception{
+        return eventService.getEventById(event_id);
     }
 }
