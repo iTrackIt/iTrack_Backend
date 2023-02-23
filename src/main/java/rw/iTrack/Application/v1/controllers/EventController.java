@@ -33,7 +33,7 @@ public class EventController {
     }
 
     @GetMapping("/educator/{educator_id}")
-    public ResponseEntity<ListApiResponse> getEventByEducator(@PathVariable UUID educator_id) throws Exception{
+    public ResponseEntity<ListApiResponse> getEventByEducator(@PathVariable Long educator_id) throws Exception{
         return eventService.getEventByEducator(educator_id);
     }
 

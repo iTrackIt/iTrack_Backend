@@ -10,6 +10,6 @@ import java.util.UUID;
 public interface EventService {
     public ResponseEntity<ListApiResponse> getAllEvents() throws Exception;
     public ResponseEntity<ApiResponse> getEventById(Long event_id) throws Exception;
-    public ResponseEntity<ListApiResponse> getEventByEducator(UUID educator_id) throws Exception;
+    public ResponseEntity<ListApiResponse> getEventByEducator(Long educator_id) throws Exception;
     public ResponseEntity<ApiResponse> createEvent(CreateEventDTO eventDTO) throws Exception;
 }

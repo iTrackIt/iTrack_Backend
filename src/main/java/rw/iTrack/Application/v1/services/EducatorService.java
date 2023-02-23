@@ -9,8 +9,8 @@ import java.util.UUID;
 
 public interface EducatorService {
     public ResponseEntity<List<EducatorDTO>> getAllEducators() throws Exception;
-    public ResponseEntity<ApiResponse> getEducatorById(UUID educ_id) throws Exception;
-    public ResponseEntity<ApiResponse> deleteEducator(UUID educ_id) throws Exception;
+    public ResponseEntity<ApiResponse> getEducatorById(Long educ_id) throws Exception;
+    public ResponseEntity<ApiResponse> deleteEducator(Long educ_id) throws Exception;
     public  ResponseEntity<ApiResponse> addEducator(CreateEducatorDTO educator) throws Exception;
-    public  ResponseEntity<ApiResponse> updateEducator(UUID educ_id , CreateEducatorDTO educatorDTO) throws Exception;
+    public  ResponseEntity<ApiResponse> updateEducator(Long educ_id , CreateEducatorDTO educatorDTO) throws Exception;
 }

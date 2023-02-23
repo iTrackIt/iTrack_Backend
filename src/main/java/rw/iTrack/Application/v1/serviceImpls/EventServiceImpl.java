@@ -61,7 +61,7 @@ public class EventServiceImpl implements EventService {
         }
     }
 
-    public ResponseEntity<ListApiResponse> getEventByEducator(UUID educator_id) throws Exception{
+    public ResponseEntity<ListApiResponse> getEventByEducator(Long educator_id) throws Exception{
         if(educatorRepository.existsById(educator_id)){
             Educator educator = educatorRepository.findById(educator_id).get();
             List<Event> eventList = eventRepository.findByEducator(educator).get();
