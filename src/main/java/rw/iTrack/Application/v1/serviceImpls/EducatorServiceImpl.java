@@ -43,7 +43,8 @@ public class EducatorServiceImpl implements EducatorService {
         }
     }
 
-    public ResponseEntity<ApiResponse> getEducatorById(UUID educ_id) throws Exception{
+    public ResponseEntity<ApiResponse> getEducatorById(Long educ_id) throws Exception{
+
         if(educatorRepository.existsById(educ_id)){
             Optional<Educator> educator = (educatorRepository.findById(educ_id));
             return ResponseEntity.ok().body(new ApiResponse(true , "Successfully retrieved the educator" , educator.map(educatorDTOMapper).get()));
@@ -55,7 +56,7 @@ public class EducatorServiceImpl implements EducatorService {
         }
     }
 
-    public ResponseEntity<ApiResponse> deleteEducator(@PathVariable UUID educ_id) throws Exception{
+    public ResponseEntity<ApiResponse> deleteEducator(@PathVariable Long educ_id) throws Exception{
         if(educatorRepository.existsById(educ_id)){
             try {
                 Educator educator = (educatorRepository.findById(educ_id)).get();
@@ -112,7 +113,7 @@ public class EducatorServiceImpl implements EducatorService {
     }
 
     @Transactional
-    public ResponseEntity<ApiResponse> updateEducator(UUID educ_id , CreateEducatorDTO educatorDTO) throws Exception{
+    public ResponseEntity<ApiResponse> updateEducator(Long educ_id , CreateEducatorDTO educatorDTO) throws Exception{
         if(educatorRepository.existsById(educ_id)){
 //           Educator educator = (educatorRepository.findById(educ_id)).get();
            Optional<Educator> educator = (educatorRepository.findById(educ_id));

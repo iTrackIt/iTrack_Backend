@@ -2,6 +2,7 @@ package rw.iTrack.Application.v1.models;
 
 import com.sun.istack.NotNull;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import rw.iTrack.Application.v1.enums.Gender;
 
@@ -14,8 +15,7 @@ public class Educator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID ed_id;
-
+    private Long ed_id;
     @NotNull
     @ApiModelProperty("The full names of the Educator")
     private String fullNames;
@@ -52,11 +52,11 @@ public class Educator {
         this.email = email;
     }
 
-    public UUID getEd_id() {
+    public Long getEd_id() {
         return ed_id;
     }
 
-    public void setEd_id(UUID ed_id) {
+    public void setEd_id(Long ed_id) {
         this.ed_id = ed_id;
     }
 

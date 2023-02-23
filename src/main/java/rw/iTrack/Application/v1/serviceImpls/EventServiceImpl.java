@@ -2,6 +2,7 @@ package rw.iTrack.Application.v1.serviceImpls;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import rw.iTrack.Application.v1.dto.CreateEventDTO;
 import rw.iTrack.Application.v1.dto.EventDTOMapper;
 import rw.iTrack.Application.v1.models.Educator;
 import rw.iTrack.Application.v1.models.Event;
@@ -49,7 +50,7 @@ public class EventServiceImpl implements EventService {
             Optional<Event> event = eventRepository.findById(event_id);
             return ResponseEntity.ok().body(new ApiResponse(
                     true,
-                    "Successfully retrieved the event",
+                   "Successfully retrieved the event",
                     event.map(eventDTOMapper)
             ));
         }else{
@@ -60,7 +61,7 @@ public class EventServiceImpl implements EventService {
         }
     }
 
-    public ResponseEntity<ListApiResponse> getEventByEducator(UUID educator_id) throws Exception{
+    public ResponseEntity<ListApiResponse> getEventByEducator(Long educator_id) throws Exception{
         if(educatorRepository.existsById(educator_id)){
             Educator educator = educatorRepository.findById(educator_id).get();
             List<Event> eventList = eventRepository.findByEducator(educator).get();
@@ -75,5 +76,9 @@ public class EventServiceImpl implements EventService {
                     "The educator with id: " + educator_id + " was not found"
             ));
         }
+    }
+
+    public ResponseEntity<ApiResponse> createEvent(CreateEventDTO eventDTO) throws Exception {
+        return null;
     }
 }
