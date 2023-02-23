@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import rw.iTrack.Application.v1.models.Educator;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 public interface EducatorRepository extends JpaRepository<Educator , Long> {

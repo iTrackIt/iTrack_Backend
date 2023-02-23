@@ -18,7 +18,6 @@ import rw.iTrack.Application.v1.utils.Encoder;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component

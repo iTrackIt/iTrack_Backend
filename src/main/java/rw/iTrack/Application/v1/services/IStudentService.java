@@ -5,7 +5,6 @@ import rw.iTrack.Application.v1.models.Student;
 
 import java.rmi.StubNotFoundException;
 import java.util.List;
-import java.util.UUID;
 
 public interface IStudentService {
 
@@ -13,11 +12,11 @@ public interface IStudentService {
 
     public Student updateStudent(Student student, UpdateStudentDTO newData);
 
-    public String deleteStudent(String password, UUID id) throws Exception;
+    public String deleteStudent(String password, Long id) throws Exception;
 
     public List<Student> getAllStudents();
 
-    public Student getStudentById(UUID id) throws Exception;
+    public Student getStudentById(Long id) throws Exception;
 
     public List<Student> addMultipleStudents(List<Student> students);
 }

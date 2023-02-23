@@ -1,25 +1,33 @@
 package rw.iTrack.Application.v1.controllers;
 
-import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import rw.iTrack.Application.v1.dto.CreateEventDTO;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import rw.iTrack.Application.v1.models.Event;
 import rw.iTrack.Application.v1.payload.ApiResponse;
-import rw.iTrack.Application.v1.payload.ListApiResponse;
 import rw.iTrack.Application.v1.serviceImpls.EventServiceImpl;
+import org.springframework.web.bind.annotation.*;
+import rw.iTrack.Application.v1.dto.CreateEventDTO;
+import rw.iTrack.Application.v1.payload.ListApiResponse;
+import java.util.List;
 
-import java.net.URI;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/events")
+@RequiredArgsConstructor
 public class EventController {
-    @Autowired
+
     private final EventServiceImpl eventService;
-    public EventController(EventServiceImpl eventService){
-        this.eventService = eventService;
+
+    @GetMapping("/get-by-student/{studentId}")
+    public ResponseEntity<ApiResponse> getEventsByStudentId(@PathVariable(name = "studentId") Long studentID) {
+        List<Event> events = this.eventService.getEventsByStudentId(studentID);
+        if (events.size() == 0)
+            return ResponseEntity.ok().body(new ApiResponse(true, "No event related to this student"));
+        return ResponseEntity.ok().body(new ApiResponse(true, "Eventss fetched successfully", events));
     }
 
     @GetMapping("/all")

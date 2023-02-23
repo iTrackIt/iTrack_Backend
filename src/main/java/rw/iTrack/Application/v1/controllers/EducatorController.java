@@ -11,7 +11,6 @@ import rw.iTrack.Application.v1.payload.ApiResponse;
 import rw.iTrack.Application.v1.serviceImpls.EducatorServiceImpl;
 import java.net.URI;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/educator")

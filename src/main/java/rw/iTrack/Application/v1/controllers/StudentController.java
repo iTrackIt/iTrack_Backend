@@ -54,7 +54,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse> getStudentsById(@PathVariable(name = "id") UUID studentId) throws Exception {
+    public ResponseEntity<ApiResponse> getStudentsById(@PathVariable(name = "id") Long studentId) throws Exception {
         return ResponseEntity.ok().body(new ApiResponse(true, "Student fetched successfully", this.studentService.getStudentById(studentId)));
     }
 }

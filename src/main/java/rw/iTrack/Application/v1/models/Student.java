@@ -5,7 +5,6 @@ import lombok.*;
 import rw.iTrack.Application.v1.enums.Gender;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -17,7 +16,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @NotNull
     private String names;

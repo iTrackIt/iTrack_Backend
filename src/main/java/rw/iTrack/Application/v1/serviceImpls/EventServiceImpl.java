@@ -1,11 +1,12 @@
 package rw.iTrack.Application.v1.serviceImpls;
-
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import rw.iTrack.Application.v1.models.Event;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import rw.iTrack.Application.v1.dto.CreateEventDTO;
 import rw.iTrack.Application.v1.dto.EventDTOMapper;
 import rw.iTrack.Application.v1.models.Educator;
-import rw.iTrack.Application.v1.models.Event;
 import rw.iTrack.Application.v1.payload.ApiResponse;
 import rw.iTrack.Application.v1.payload.ListApiResponse;
 import rw.iTrack.Application.v1.repositories.EducatorRepository;
@@ -14,21 +15,17 @@ import rw.iTrack.Application.v1.services.EventService;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
+
 @Component
+@RequiredArgsConstructor
+@Service
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final EventDTOMapper eventDTOMapper;
     private final EducatorRepository educatorRepository;
 
-    public EventServiceImpl(EventRepository eventRepository , EventDTOMapper eventDTOMapper,
-                            EducatorRepository educatorRepository){
-        this.eventRepository = eventRepository;
-        this.eventDTOMapper = eventDTOMapper;
-        this.educatorRepository = educatorRepository;
-    }
     public ResponseEntity<ListApiResponse> getAllEvents() throws Exception{
         try {
             List<Event> eventList = eventRepository.findAll();
@@ -81,4 +78,11 @@ public class EventServiceImpl implements EventService {
     public ResponseEntity<ApiResponse> createEvent(CreateEventDTO eventDTO) throws Exception {
         return null;
     }
+
+    @Override
+    public List<Event> getEventsByStudentId(Long id) {
+        Optional<List<Event>> events = this.eventRepository.findByStudentId(id);
+        return events.orElse(null);
+    }
+
 }

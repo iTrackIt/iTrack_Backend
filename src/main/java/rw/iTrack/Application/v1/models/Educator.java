@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import rw.iTrack.Application.v1.enums.Gender;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "educators" , uniqueConstraints = {@UniqueConstraint(columnNames = {"email"}) , @UniqueConstraint(columnNames = {"nat_id"})})
