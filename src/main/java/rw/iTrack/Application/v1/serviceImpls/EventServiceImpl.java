@@ -123,4 +123,21 @@ public class EventServiceImpl implements EventService {
         return events.orElse(null);
     }
 
+    public ResponseEntity<ApiResponse> deleteEvent(Long event_id) throws Exception{
+        if(eventRepository.existsById(event_id)){
+            Optional<Event> event = eventRepository.findById(event_id);
+            eventRepository.delete(event.get());
+            return ResponseEntity.ok().body(new ApiResponse(
+                    true,
+                    "Successfully deleted the event",
+                    event.map(eventDTOMapper)
+                    ));
+        }else{
+            return ResponseEntity.status(404).body(new ApiResponse(
+                    false,
+                    "The Event with id: " + event_id +  " does not exist"
+            ));
+        }
+    }
+
 }

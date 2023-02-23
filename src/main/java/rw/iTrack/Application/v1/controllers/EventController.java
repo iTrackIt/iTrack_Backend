@@ -49,4 +49,9 @@ public class EventController {
     public ResponseEntity<ApiResponse> addEvent(@RequestBody CreateEventDTO eventDTO) throws Exception{
         return eventService.createEvent(eventDTO);
     }
+
+    @DeleteMapping("/{event_id}")
+    public ResponseEntity<ApiResponse> deleteEvent(@PathVariable Long event_id) throws Exception{
+        return eventService.deleteEvent(event_id);
+    }
 }
