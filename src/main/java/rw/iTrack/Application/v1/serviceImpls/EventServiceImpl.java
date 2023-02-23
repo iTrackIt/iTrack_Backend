@@ -1,6 +1,8 @@
 package rw.iTrack.Application.v1.serviceImpls;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import rw.iTrack.Application.v1.dto.UpdateEventDTO;
 import rw.iTrack.Application.v1.models.Event;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -140,4 +142,22 @@ public class EventServiceImpl implements EventService {
         }
     }
 
+    @Transactional
+    public ResponseEntity<ApiResponse> updateEvent( Long event_id ,  UpdateEventDTO updateEventDTO) throws Exception {
+        if (eventRepository.existsById(event_id)) {
+            Optional<Event> event = eventRepository.findById(event_id);
+            event.get().setReason(updateEventDTO.getReason());
+            event.get().setMarks(updateEventDTO.getMarks());
+            return ResponseEntity.ok().body(new ApiResponse(
+                    true,
+                    "Updated the event details",
+                    event.map(eventDTOMapper)
+            ));
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponse(
+                    false,
+                    "The Event with id: " + event_id + " does not exist"
+            ));
+        }
+    }
 }
