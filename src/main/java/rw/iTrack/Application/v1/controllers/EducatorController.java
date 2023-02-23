@@ -30,7 +30,8 @@ public class EducatorController {
     }
 
     @GetMapping("/{educ_id}")
-    public ResponseEntity<ApiResponse> getEducatorById(@PathVariable UUID educ_id) throws Exception{
+    public ResponseEntity<ApiResponse> getEducatorById(@PathVariable("educ_id") UUID educ_id) throws Exception{
+        System.out.println(educ_id);
         return educatorService.getEducatorById(educ_id);
     }
 

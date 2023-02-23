@@ -44,6 +44,7 @@ public class EducatorServiceImpl implements EducatorService {
     }
 
     public ResponseEntity<ApiResponse> getEducatorById(UUID educ_id) throws Exception{
+
         if(educatorRepository.existsById(educ_id)){
             Optional<Educator> educator = (educatorRepository.findById(educ_id));
             return ResponseEntity.ok().body(new ApiResponse(true , "Successfully retrieved the educator" , educator.map(educatorDTOMapper).get()));
