@@ -17,7 +17,7 @@ public class CreateEventDTO {
     private String reason;
     private int marks;
     private LocalDate timeRemoved;
-    private Educator educator;
-    private Student student;
+    private Long educator_id;
+    private Long student_id;
 
 }
