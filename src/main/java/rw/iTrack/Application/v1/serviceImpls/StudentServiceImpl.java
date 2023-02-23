@@ -9,7 +9,6 @@ import rw.iTrack.Application.v1.services.IStudentService;
 import rw.iTrack.Application.v1.utils.Encoder;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +32,7 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public String deleteStudent(String password, UUID id) throws Exception {
+    public String deleteStudent(String password, Long id) throws Exception {
         Encoder encoder = new Encoder();
         Student student = this.studentRepository.findById(id).orElseThrow(()->new Exception("Student not found"));
         if (!encoder.isMatch(password, student.getPassword())) {
@@ -43,13 +42,14 @@ public class StudentServiceImpl implements IStudentService {
         return "Student deleted successfully";
     }
 
+
     @Override
     public List<Student> getAllStudents() {
         return this.studentRepository.findAll();
     }
 
     @Override
-    public Student getStudentById(UUID id) throws Exception {
+    public Student getStudentById(Long id) throws Exception {
         System.out.println(id);
         return this.studentRepository.findById(id).orElseThrow(()->new Exception("Student not found"));
     }

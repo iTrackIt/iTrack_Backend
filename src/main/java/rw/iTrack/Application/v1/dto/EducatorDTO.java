@@ -2,10 +2,9 @@ package rw.iTrack.Application.v1.dto;
 
 import rw.iTrack.Application.v1.enums.Gender;
 
-import java.util.UUID;
 
 public record EducatorDTO(
-        UUID id,
+        Long id,
         String fullName,
         String username,
         String email,

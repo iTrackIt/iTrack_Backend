@@ -1,12 +1,16 @@
 package rw.iTrack.Application.v1.services;
 
+import org.springframework.http.ResponseEntity;
+import rw.iTrack.Application.v1.dto.CreateEventDTO;
 import rw.iTrack.Application.v1.models.Event;
-
+import rw.iTrack.Application.v1.payload.ApiResponse;
+import rw.iTrack.Application.v1.payload.ListApiResponse;
 import java.util.List;
-import java.util.UUID;
 
 public interface EventService {
-
-    public List<Event> getEventsByStudentId(UUID id);
-
+    public List<Event> getEventsByStudentId(Long id);
+    public ResponseEntity<ListApiResponse> getAllEvents() throws Exception;
+    public ResponseEntity<ApiResponse> getEventById(Long event_id) throws Exception;
+    public ResponseEntity<ListApiResponse> getEventByEducator(Long educator_id) throws Exception;
+    public ResponseEntity<ApiResponse> createEvent(CreateEventDTO eventDTO) throws Exception;
 }
