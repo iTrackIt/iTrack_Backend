@@ -19,6 +19,9 @@ public class JwtService {
     @Value("${security.jwt.secret}")
     private String SECRET_KEY;
 
+    @Value("${security.jwt.expiresIn}")
+    private int EXPIRES_IN;
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -40,15 +43,15 @@ public class JwtService {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(String email) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails.getUsername());
+        return createToken(claims, email);
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRES_IN))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
     }
 

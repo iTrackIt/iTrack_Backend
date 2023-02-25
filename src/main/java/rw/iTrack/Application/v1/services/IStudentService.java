@@ -1,5 +1,6 @@
 package rw.iTrack.Application.v1.services;
 
+import rw.iTrack.Application.v1.dto.LoginResponse;
 import rw.iTrack.Application.v1.dto.UpdateStudentDTO;
 import rw.iTrack.Application.v1.models.Student;
 
@@ -19,4 +20,8 @@ public interface IStudentService {
     public Student getStudentById(Long id) throws Exception;
 
     public List<Student> addMultipleStudents(List<Student> students);
+
+    LoginResponse login(String email, String password);
+
+    Student getLoggedInStudent();
 }

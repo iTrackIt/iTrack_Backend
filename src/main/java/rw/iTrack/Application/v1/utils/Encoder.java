@@ -1,7 +1,11 @@
 package rw.iTrack.Application.v1.utils;
 
+import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
+@Component
+@NoArgsConstructor
 public class Encoder {
 
     //the function to hash the given password

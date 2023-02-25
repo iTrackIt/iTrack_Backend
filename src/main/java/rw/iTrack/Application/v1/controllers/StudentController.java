@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rw.iTrack.Application.v1.dto.CreateStudentDTO;
+import rw.iTrack.Application.v1.dto.LoginDTO;
+import rw.iTrack.Application.v1.dto.LoginResponse;
 import rw.iTrack.Application.v1.dto.UpdateStudentDTO;
 import rw.iTrack.Application.v1.models.Student;
 import rw.iTrack.Application.v1.payload.ApiResponse;
@@ -18,6 +20,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentServiceImpl studentService;
+
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createStudent(@RequestBody CreateStudentDTO dto) {
         Student student = new Student(dto.getNames(), dto.getEmail(), dto.getPassword(), dto.getGender(), dto.getClassName(), dto.getYear());
@@ -56,5 +59,20 @@ public class StudentController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> getStudentsById(@PathVariable(name = "id") Long studentId) throws Exception {
         return ResponseEntity.ok().body(new ApiResponse(true, "Student fetched successfully", this.studentService.getStudentById(studentId)));
+    }
+
+    @PostMapping("/auth/login")
+    public ResponseEntity<ApiResponse> login(@RequestBody LoginDTO dto) {
+        LoginResponse response = this.studentService.login(dto.getEmail(), dto.getPassword());
+        if (response == null) return ResponseEntity.badRequest().body(new ApiResponse(false, "Invalid credentials"));
+        return ResponseEntity.ok().body(new ApiResponse(true, "Login successful", response));
+    }
+
+    @GetMapping("/auth/user")
+    public ResponseEntity<ApiResponse> getLoggedInUser() {
+
+        Student student = this.studentService.getLoggedInStudent();
+        if (student == null) return ResponseEntity.badRequest().body(new ApiResponse(false, "User not logged in"));
+        return ResponseEntity.ok().body(new ApiResponse(true, "Logged in user fetched successfully", student));
     }
 }
