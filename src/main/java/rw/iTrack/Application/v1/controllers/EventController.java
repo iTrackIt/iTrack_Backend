@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import rw.iTrack.Application.v1.dto.UpdateEventDTO;
 import rw.iTrack.Application.v1.models.Event;
 import rw.iTrack.Application.v1.payload.ApiResponse;
 import rw.iTrack.Application.v1.serviceImpls.EventServiceImpl;
@@ -48,5 +49,15 @@ public class EventController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> addEvent(@RequestBody CreateEventDTO eventDTO) throws Exception{
         return eventService.createEvent(eventDTO);
+    }
+
+    @DeleteMapping("delete/{event_id}")
+    public ResponseEntity<ApiResponse> deleteEvent(@PathVariable Long event_id) throws Exception{
+        return eventService.deleteEvent(event_id);
+    }
+
+    @PutMapping("/update/{event_id}")
+    public ResponseEntity<ApiResponse> updateEvent(@PathVariable Long event_id , @RequestBody UpdateEventDTO updateEventDTO) throws Exception{
+       return eventService.updateEvent(event_id , updateEventDTO);
     }
 }
